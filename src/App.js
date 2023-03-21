@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import style from './style.css';
+import MovieSelect from './components/MovieSelect';
+import ScreenContainer from './components/ScreenContainer';
+import MovieSeats from "./components/MovieSeats";
+import MoviePrice from "./components/MoviePrice";
 
 function App() {
+  const [totalTicket, setTotalTicket] = useState(0);
+  const [receivedTicketPrice, setReceivedTicketPrice] = useState(0);
+
+  const ticketCount = (ticketNumData) => {
+      setTotalTicket(ticketNumData);
+  }
+  
+  const finalTicketPrice = (TicketPriceData) => {
+    setReceivedTicketPrice(TicketPriceData);
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main_container">
+      <div className="movie_container">
+        <MovieSelect finalTicketPrice={finalTicketPrice}/>
+        <ScreenContainer/>
+        <MovieSeats ticketCount = {ticketCount}/>
+        <MoviePrice totalTicket = {totalTicket} receivedTicketPrice={receivedTicketPrice}/>
+      </div>
     </div>
-  );
+  )
 }
+
 
 export default App;
