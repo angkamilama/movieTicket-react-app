@@ -1,41 +1,87 @@
 import { useState } from "react";
-import RowA  from './RowA';
-import RowB  from './RowB';
-import RowC  from './RowC';
-import RowD  from './RowD';
-import RowE  from './RowE';
-import RowF  from './RowF';
+
 
 function MovieSeats({ticketCount}) {
-    const [seat, setSeat] = useState([]);
+    const [occupiedSeats, setOccupiedSeats] = useState(0);
+    
   
     const chooseSeat = (e) => {
-       
-        if(e.target.classList.contains('seat') && !e.target.classList.contains('occupied') ) {
-            e.target.classList.add('occupied');
-            setSeat([...seat, e.target]);
+        const reserved = e.target.classList.contains('reserved');
 
-        } else if (e.target.classList.contains('seat') && e.target.classList.contains('occupied') ) {
-            e.target.classList.remove('occupied');
-            const UpdatedSeat = [...seat].filter(el => {
-                return el !== e.target;
-            });
-            setSeat(UpdatedSeat);
-        }             
-        ticketCount(seat);
+        if (!reserved) {
+            e.target.classList.toggle('reserved');
+
+            const nextOccupiedSeats =  occupiedSeats + 1;
+            setOccupiedSeats(nextOccupiedSeats);
+            ticketCount(nextOccupiedSeats);   
+             
+        }  else if (reserved && occupiedSeats > 0) {
+            e.target.classList.toggle('unreserved');
+            const nextOccupiedSeats = occupiedSeats - 1 ;
+            setOccupiedSeats(nextOccupiedSeats); 
+            ticketCount(nextOccupiedSeats);   
+        }
+
+        
     } 
-    
+
 
     return(
-        <div onClick = { chooseSeat } className = " seats " >
-            <RowA/>
-            <RowB/>
-            <RowC/>
-            <RowD/>
-            <RowE/>
-            <RowF/>
+        <div className = "seats" >
+            <div className="row">
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>        
+            </div>
+            <div className="row">
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>        
+            </div>
+            <div className="row">
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>        
+            </div>
+            <div className="row">
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>        
+            </div>
+            <div className="row">
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>
+                <div onClick = { chooseSeat } className='seat'></div>        
+            </div>
         </div>
     )
 };
 
 export default MovieSeats;
+
+
