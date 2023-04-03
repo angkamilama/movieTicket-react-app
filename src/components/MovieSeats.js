@@ -3,7 +3,7 @@ import { useState } from "react";
 const columns = ["A", "B", "C", "D", "E", "F", "G"];
 const rows = ["1", "2", "3", "4", "5"];
 
-function MovieSeats({ ticketCount }) {
+function MovieSeats({ setTicketCount }) {
   const [seats, setSeats] = useState([]);
 
   const handleSeat = (seatNum) => {
@@ -15,7 +15,7 @@ function MovieSeats({ ticketCount }) {
       // otherwise add it
       setSeats([...seats, seatNum]);
     }
-    ticketCount(seats.length);
+    setTicketCount(seats.length);
   };
 
   return (

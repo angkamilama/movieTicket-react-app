@@ -9,7 +9,7 @@ function App() {
   const [totalTicket, setTotalTicket] = useState(0);
   const [price, setPrice] = useState(0);
 
-  const ticketCount = (ticketNumData) => {
+  const setTicketCount = (ticketNumData) => {
     setTotalTicket(ticketNumData);
   };
 
@@ -18,7 +18,7 @@ function App() {
       <div className="movie_container">
         <MovieSelect setTicketPrice={(price) => setPrice(price)} />
         <ScreenContainer />
-        <MovieSeats ticketCount={ticketCount} />
+        <MovieSeats setTicketCount={setTicketCount} />
         <MoviePrice totalTicket={totalTicket} receivedTicketPrice={price} />
       </div>
     </div>
