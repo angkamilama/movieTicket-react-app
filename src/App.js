@@ -1,35 +1,28 @@
 import React, { useState } from "react";
-import style from './style.css';
-import MovieSelect from './components/MovieSelect';
-import ScreenContainer from './components/ScreenContainer';
+import style from "./style.css";
+import MovieSelect from "./components/MovieSelect";
+import ScreenContainer from "./components/ScreenContainer";
 import MovieSeats from "./components/MovieSeats";
 import MoviePrice from "./components/MoviePrice";
 
 function App() {
   const [totalTicket, setTotalTicket] = useState(0);
-  const [receivedTicketPrice, setReceivedTicketPrice] = useState(0);
+  const [price, setPrice] = useState(0);
 
   const ticketCount = (ticketNumData) => {
-      setTotalTicket(ticketNumData);
-  }
-  
-  const finalTicketPrice = (TicketPriceData) => {
-    setReceivedTicketPrice(TicketPriceData);
-  }
-
-
+    setTotalTicket(ticketNumData);
+  };
 
   return (
     <div className="main_container">
       <div className="movie_container">
-        <MovieSelect finalTicketPrice={finalTicketPrice}/>
-        <ScreenContainer/>
-        <MovieSeats ticketCount = {ticketCount}/>
-        <MoviePrice totalTicket = {totalTicket} receivedTicketPrice={receivedTicketPrice}/>
+        <MovieSelect setTicketPrice={(price) => setPrice(price)} />
+        <ScreenContainer />
+        <MovieSeats ticketCount={ticketCount} />
+        <MoviePrice totalTicket={totalTicket} receivedTicketPrice={price} />
       </div>
     </div>
-  )
+  );
 }
-
 
 export default App;
