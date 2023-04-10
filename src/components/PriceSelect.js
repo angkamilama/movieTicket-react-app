@@ -3,7 +3,7 @@ function PriceSelect({ ticketPrice, totalTicket }) {
 
   return (
     <div className="ticket-price">
-      {ticketPrice > 0 && (
+      {(totalTicket || ticketPrice) > 0 && (
         <div className="ticket">
           <p>
             You have booked {totalTicket} tickets and the total amount is $

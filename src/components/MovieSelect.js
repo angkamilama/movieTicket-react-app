@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function MovieSelect({ finalTicketPrice }) {
+function MovieSelect({ finalTicketPrice, clearSeats }) {
   const movieArray = [
     { name: "Titanic", id: "Titanic0", price: 15 },
     { name: "Avatar", id: "Avatar0", price: 10 },
@@ -10,6 +10,7 @@ function MovieSelect({ finalTicketPrice }) {
 
   const chooseMovie = (e) => {
     finalTicketPrice(e.target.value);
+    clearSeats(0);
   };
 
   return (

@@ -16,14 +16,20 @@ function App() {
   };
 
   const finalTicketPrice = (TicketPriceData) => {
-    setTotalTicket((totalTicket) => 0);
     setTicketPrice(TicketPriceData);
+  };
+
+  const clearSeats = (value) => {
+    setTotalTicket((totalTicket) => totalTicket * value);
   };
 
   return (
     <div className="main_container">
       <div className="movie_container">
-        <MovieSelect finalTicketPrice={finalTicketPrice} />
+        <MovieSelect
+          finalTicketPrice={finalTicketPrice}
+          clearSeats={clearSeats}
+        />
         <ScreenContainer />
         <SeatSelect
           setTicketCount={setTicketCount}

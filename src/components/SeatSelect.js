@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function SeatSelect({ setTicketCount, rowList, columnList }) {
   const [seats, setSeats] = useState([]);
-  const [isActive, setIsActive] = useState(true);
 
   const handleSeat = (seatNum) => {
     if (seats.includes(seatNum)) {
-      const filteredSeats = seats.filter((word) => word !== seatNum);
-      setSeats(filteredSeats);
+      const newSeats = seats.filter((word) => word !== seatNum);
+      setSeats(newSeats);
+      setTicketCount(newSeats.length);
     } else {
-      setSeats([...seats, seatNum]);
-      setIsActive((isActive) => !isActive);
+      const newSeats = [...seats, seatNum];
+      setSeats(newSeats);
+      setTicketCount(newSeats.length);
     }
-
-    setTicketCount(seats.length);
   };
+
+  useEffect(() => console.log(), [seats]);
 
   return (
     <div className="seats">
